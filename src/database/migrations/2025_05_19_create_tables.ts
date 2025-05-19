@@ -44,7 +44,7 @@ try {
     `
   ).run();
 } catch (e) {
-  console.error("Failed to migrate. Error: ", e);
+  console.error("Failed to migrate DB. Error: ", e);
 }
 
-console.info("Successfully migrated database.");
+console.info("Successfully migrated DB.");
