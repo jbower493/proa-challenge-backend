@@ -8,3 +8,6 @@
 4. Create seed script to import data from CSV to DB
 
 5. Create models for getting required data from DB
+- Up to here
+
+6. Create endpoint to list all weather stations
