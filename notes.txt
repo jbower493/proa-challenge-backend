@@ -1,0 +1,4 @@
+1. Define DB and connection
+2. Make a migration to create required tables
+3. Create seed script to import data from CSV to DB
+3. Create models for getting required data from DB
