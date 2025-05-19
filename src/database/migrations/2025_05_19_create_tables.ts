@@ -37,9 +37,10 @@ try {
             id INTEGER PRIMARY KEY,
             weather_station_id INTEGER,
             variable_id INTEGER,
+            value REAL,
             timestamp TEXT,
             FOREIGN KEY (weather_station_id) REFERENCES weather_stations(id),
-            FOREIGN KEY (variable_id) REFERENCES variables(id)
+            FOREIGN KEY (variable_id) REFERENCES weather_variables(id)
         )
     `
   ).run();
