@@ -1,12 +1,7 @@
 import { db } from "../connection";
 import fs from "node:fs";
 import os from "node:os";
-
-type WeatherVariable = {
-  id: number;
-  name: string;
-  weather_station_id: number;
-};
+import { WeatherVariable } from "../types";
 
 function readCsv(path: string): { headings: string[]; rows: string[][] } {
   const file = fs.readFileSync(path, { encoding: "utf-8" });
