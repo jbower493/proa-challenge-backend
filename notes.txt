@@ -11,3 +11,5 @@
 - Up to here
 
 6. Create endpoint to list all weather stations
+
+Issues: Station id 2 is sending empty array of latest measurements
