@@ -1,7 +1,7 @@
 import { db } from "../connection";
 import fs from "node:fs";
 import os from "node:os";
-import { WeatherVariable } from "../types";
+import { TWeatherVariable } from "../types";
 
 function readCsv(path: string): { headings: string[]; rows: string[][] } {
   const file = fs.readFileSync(path, { encoding: "utf-8" });
@@ -63,7 +63,7 @@ function insertMeasurements() {
 
   const weatherVariables = db
     .prepare(`SELECT id, name, weather_station_id FROM weather_variables`)
-    .all() as WeatherVariable[];
+    .all() as TWeatherVariable[];
 
   dataFiles.forEach((dataFile) => {
     const { headings: fileHeadings, rows: fileRows } = readCsv(
@@ -103,6 +103,10 @@ function insertMeasurements() {
             matchingVariable.id,
             variableValue,
             timestamp
+          );
+        } else {
+          console.warn(
+            `Variable name "${variableName}" from data file "${dataFile}" does not exist in the list of variables.`
           );
         }
       });
