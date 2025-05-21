@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate": "npx tsx src/database/migrations/2025_05_19_create_tables.ts",
+    "seed": "npx tsx src/database/seed/main.ts"
   },
   "dependencies": {
     "better-sqlite3": "^11.10.0",

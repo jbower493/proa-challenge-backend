@@ -82,33 +82,28 @@ function insertMeasurements() {
         return;
       }
 
+      // Validate that the measurement is a valid variables from the correct weather station before inserting
+      const matchingVariable = weatherVariables.find(
+        (variableFromDb) =>
+          variableFromDb.weather_station_id === weatherStationId &&
+          variableFromDb.name === variableName
+      );
+
+      if (!matchingVariable) {
+        return console.warn(
+          `Warning: variable name "${variableName}" from data file "${dataFile}" does not exist in the list of variables. Skipping this variable.`
+        );
+      }
+
       fileRows.forEach((row) => {
         const variableValue = row[headingIndex];
         const timestamp = row[timestampIndex];
 
-        // Validate that the measurement is a valid variables from the correct weather station before inserting
-        const matchingVariable = weatherVariables.find(
-          (variableFromDb) =>
-            variableFromDb.weather_station_id === weatherStationId &&
-            variableFromDb.name === variableName
-        );
-
-        if (matchingVariable) {
-          db.prepare(
-            `
+        db.prepare(
+          `
                 INSERT INTO measurements (weather_station_id, variable_id, value, timestamp) VALUES (?,?,?,?)
             `
-          ).run(
-            weatherStationId,
-            matchingVariable.id,
-            variableValue,
-            timestamp
-          );
-        } else {
-          console.warn(
-            `Variable name "${variableName}" from data file "${dataFile}" does not exist in the list of variables.`
-          );
-        }
+        ).run(weatherStationId, matchingVariable.id, variableValue, timestamp);
       });
     });
   });

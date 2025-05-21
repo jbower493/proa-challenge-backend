@@ -2,8 +2,8 @@
 
 ## Run migrations
 
-`npx tsx src/database/migrations/2025_05_19_create_tables.ts`
+`npm run migrate`
 
 ## Seed the database
 
-`npx tsx src/database/seed/main.ts`
+`npm run seed`
