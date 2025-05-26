@@ -42,3 +42,4 @@ next-env.d.ts
 
 proa_sample_data
 src/database/database.db
+src/database/database.bak.db
